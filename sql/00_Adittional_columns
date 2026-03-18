@@ -1,0 +1,21 @@
+CREATE OR REPLACE VIEW `superstore.orders_view` AS
+SELECT
+    *,
+    
+    SAFE_DIVIDE(profit, sales) AS profit_margin,
+
+    sales / quantity AS unit_price,
+
+    sales / ((1 - discount) * quantity) AS original_price_per_unit,
+    
+    (sales / ((1 - discount) * quantity) * quantity - sales) AS total_discount_value,
+    
+    DATE_DIFF(
+        PARSE_DATE('%d-%m-%Y', REPLACE(ship_date, '/', '-')),
+        PARSE_DATE('%d-%m-%Y', REPLACE(order_date, '/', '-')),
+        DAY
+    ) AS delivery_days,
+    
+    IF(discount > 0, 1, 0) AS is_discounted
+
+FROM `superstore.superstore`;
