@@ -1,0 +1,7 @@
+SELECT
+  COUNT(order_id) AS total_orders,
+  SUM(sales) AS total_sales,
+  SUM(profit) AS total_profit,
+  SUM(shipping_cost) AS total_shipping_cost,  -- залишаємо, щоб бачити скільки заплатили клієнти за доставку
+  AVG(SAFE_DIVIDE(profit, sales)) AS avg_profit_margin
+FROM `superstore.orders_view`;
