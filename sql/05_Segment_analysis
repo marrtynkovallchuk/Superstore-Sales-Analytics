@@ -1,0 +1,9 @@
+SELECT
+  segment,
+  COUNT(order_id) AS total_orders,
+  SUM(sales) AS total_sales,
+  SUM(profit) AS total_profit,
+  SAFE_DIVIDE(SUM(profit), SUM(sales)) AS profit_margin
+FROM `superstore.orders_view`
+GROUP BY segment
+ORDER BY total_sales DESC;
