@@ -144,7 +144,7 @@ Main insights:
 
 
 
-![Overview](images/overview.png)
+![Overview](images/Overview.png)
 ![Discount](screenshots/discount.png)
 ![Country](screenshots/country.png)
 ![Growth](screenshots/growth.png)
