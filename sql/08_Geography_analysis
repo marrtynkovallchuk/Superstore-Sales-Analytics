@@ -1,0 +1,27 @@
+SELECT
+  country,
+  category,
+  sub_category,
+
+  SUM(sales) AS total_sales,
+  SUM(profit) AS total_profit,
+
+  ROUND(SUM(profit) / SUM(sales) * 100, 2) AS profit_margin_percent,
+
+  ROUND(AVG(discount), 4) AS avg_discount,
+
+  COUNT(order_id) AS total_orders,
+
+  ROUND(
+    COUNTIF(profit < 0) / COUNT(*) * 100,
+    2
+  ) AS percent_loss_orders
+
+FROM `superstore.orders_view`
+
+GROUP BY
+  country,
+  category,
+  sub_category
+
+ORDER BY profit_margin_percent
