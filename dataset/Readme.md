@@ -1,0 +1,5 @@
+Dataset
+
+Dataset is too large to include here. You can download it from Kaggle:
+
+https://www.kaggle.com/datasets/laibaanwer/superstore-sales-dataset/code
