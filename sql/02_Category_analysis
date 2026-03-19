@@ -1,1 +1,9 @@
-
+SELECT
+  category,
+  COUNT(order_id) AS total_orders,
+  SUM(sales) AS total_sales,
+  SUM(profit) AS total_profit,
+  AVG(SAFE_DIVIDE(profit, sales)) AS avg_profit_margin
+FROM `superstore.orders_view`
+GROUP BY category
+ORDER BY total_sales DESC;
