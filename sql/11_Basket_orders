@@ -1,0 +1,22 @@
+WITH order_summary AS (
+    SELECT
+        order_id,
+        COUNT(DISTINCT product_name) AS total_items,
+        SUM(sales) AS total_sales,
+        SUM(profit) AS total_profit,
+        AVG(discount) AS avg_discount,
+        SAFE_DIVIDE(SUM(profit), SUM(sales)) AS margin
+    FROM `superstore.orders_view`
+    GROUP BY order_id
+)
+
+SELECT
+    total_items,
+    COUNT(*) AS orders_count,
+    SUM(total_sales) AS sum_sales,
+    SUM(total_profit) AS sum_profit,
+    AVG(margin) AS avg_margin,
+    AVG(avg_discount) AS avg_order_discount
+FROM order_summary
+GROUP BY total_items
+ORDER BY total_items;
