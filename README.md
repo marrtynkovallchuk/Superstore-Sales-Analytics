@@ -145,9 +145,14 @@ Main insights:
 
 
 ![Overview](images/Overview.png)
-![Discount](screenshots/discount.png)
-![Country](screenshots/country.png)
-![Growth](screenshots/growth.png)
+![Discount analysis](images/Discount_analysis.png)
+![Profit drivers](images/Profit_drivers.png)
+![Discount vs Orders Shipping](images/Discount_vs_Orders_Shipping.png)
+![Discount vs Repeat orders](images/Discount_vs_Repeat_orders.png)
+![Country Performance Analysis](images/Country_Performance_Analysis.png)
+![Business Growth](images/Business_Growth.png)
+![Key Findings](images/Key_Findings.png)
+![Recommendations](images/Recommendations.png)
 
 ---
 
