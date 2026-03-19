@@ -1,0 +1,46 @@
+WITH order_stats AS (
+  SELECT
+    order_id,
+    country,
+    COUNT(*) AS items_in_order,
+    SUM(sales) AS order_sales,
+    SUM(profit) AS order_profit,
+    AVG(discount) AS avg_discount,
+    AVG(shipping_cost) AS avg_shipping
+  FROM `superstore.orders_view`
+  GROUP BY order_id, country
+),
+
+country_stats AS (
+  SELECT
+    country,
+
+    COUNT(*) AS orders,
+    SUM(order_sales) AS total_sales,
+    SUM(order_profit) AS total_profit,
+
+    AVG(avg_discount) AS avg_discount,
+    AVG(avg_shipping) AS avg_shipping,
+
+    AVG(items_in_order) AS avg_items,
+
+    COUNTIF(order_profit < 0) / COUNT(*) * 100 AS percent_loss_orders
+
+  FROM order_stats
+  GROUP BY country
+)
+
+SELECT
+  country,
+  orders,
+  total_sales,
+  total_profit,
+
+  ROUND(total_profit / total_sales * 100, 2) AS margin_percent,
+  ROUND(avg_discount, 4) AS avg_discount,
+  ROUND(avg_shipping, 2) AS avg_shipping,
+  ROUND(avg_items, 2) AS avg_items_per_order,
+  ROUND(percent_loss_orders, 2) AS percent_loss_orders
+
+FROM country_stats
+ORDER BY margin_percent
