@@ -1,0 +1,9 @@
+SELECT
+  is_discounted,
+  COUNT(order_id) AS total_orders,
+  SUM(sales) AS total_sales,
+  SUM(profit) AS total_profit,
+  AVG(SAFE_DIVIDE(profit, sales)) AS avg_profit_margin
+FROM `superstore.orders_view`
+GROUP BY is_discounted
+ORDER BY is_discounted DESC;
