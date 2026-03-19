@@ -1,0 +1,22 @@
+SELECT
+  EXTRACT(YEAR FROM PARSE_DATE('%d-%m-%Y', REPLACE(order_date, '/', '-'))) AS year,
+  EXTRACT(MONTH FROM PARSE_DATE('%d-%m-%Y', REPLACE(order_date, '/', '-'))) AS month,
+
+  COUNT(DISTINCT order_id) AS orders,
+  SUM(sales) AS total_sales,
+  SUM(profit) AS total_profit,
+
+  ROUND(AVG(discount), 4) AS avg_discount,
+  ROUND(AVG(shipping_cost), 2) AS avg_shipping,
+
+  ROUND(SUM(profit)/SUM(sales)*100, 2) AS margin_percent,
+
+  ROUND(
+    COUNTIF(profit < 0)/COUNT(*)*100,
+    2
+  ) AS percent_loss_orders
+
+FROM `superstore.orders_view`
+
+GROUP BY year, month
+ORDER BY year, month
